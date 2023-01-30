@@ -12,6 +12,8 @@ import {
 } from 'react-icons/io5';
 import { AiOutlineFullscreen, AiOutlineFullscreenExit } from 'react-icons/ai';
 
+const VideoFile = require('../assets/sample.mp4');
+
 interface IPropsSubtitleWrapper {
 	showActionbar: boolean;
 }
@@ -79,7 +81,6 @@ const VideoPlayer = () => {
 	};
 
 	const overlayPlayToggler = (e: any) => {
-		console.log('hey clikc');
 		e.stopPropagation();
 		togglePlay();
 	};
@@ -107,15 +108,13 @@ const VideoPlayer = () => {
 		>
 			<video
 				ref={video_ref}
-				src={
-					'https://imdb-video.media-imdb.com/vi1023514905/1434659607842-pgv4ql-1616202457209.mp4?Expires=1675055844&Signature=kgdoNqZ8K8AzOM04uD-3ySftzKlk6tlOH4My2QmOdNVtt4~a7NhkoKkOT-0tTDboL6lbJ1UNss1R4X3mRiIwErI16~XzP7bu3PI07IVT6l4zf-p61eXVzL2EQi1eoq8uGOhL9QKy2RxBpML9UB~NaQnkmNtCU7eVZpgkJFLPzFwmX4x~ZQBNwkHVfhL6ub4-qnP5iwjZ4GoAtK4FkUP8KMI0-0jkg5xWsmr128p5wPCKIJGeff3-waquwdHLccjZ9WqAJv~tHOoHct90RCAULInPmc2MrcVKAT4pVC75Lp0tBw2Nyum4GCqdCRIw7l-4xWjz73y8R3NgmWv9-4gtFQ__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA'
-				}
 				onTimeUpdate={timeUpdateHandler}
 				onLoadedMetadata={loadMetaDataHandler}
 				// poster = {}
-				preload='auto'
 				playsInline={true}
+				preload='none'
 			>
+				<source src={VideoFile} type='video/mp4'></source>
 				{/* <track
 					kind='chapters'
 					// src=''
@@ -562,6 +561,7 @@ const VideoOverlay = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	border-radius: 0.8em; ;
 `;
 
 const ControlButton = styled.div<any>`
